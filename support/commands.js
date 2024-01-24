@@ -58,20 +58,24 @@ Cypress.Commands.add('signMetamaskMessage', () => {
   return cy.task('signMetamaskMessage');
 });
 
-Cypress.Commands.add('rejectMetamaskTransaction', () => {
-  return cy.task('rejectMetamaskTransaction');
+Cypress.Commands.add("signMetamaskTypedData", () => {
+  return cy.task("signMetamaskTypedData");
 });
 
-Cypress.Commands.add('switchToMetamaskNotification', () => {
-  return cy.task('switchToMetamaskNotification');
+Cypress.Commands.add("rejectMetamaskTransaction", () => {
+  return cy.task("rejectMetamaskTransaction");
 });
 
-Cypress.Commands.add('unlockMetamask', (password) => {
-  return cy.task('unlockMetamask', password);
+Cypress.Commands.add("switchToMetamaskNotification", () => {
+  return cy.task("switchToMetamaskNotification");
 });
 
-Cypress.Commands.add('fetchMetamaskWalletAddress', () => {
-  cy.task('fetchMetamaskWalletAddress').then(address => {
+Cypress.Commands.add("unlockMetamask", (password) => {
+  return cy.task("unlockMetamask", password);
+});
+
+Cypress.Commands.add("fetchMetamaskWalletAddress", () => {
+  cy.task("fetchMetamaskWalletAddress").then((address) => {
     return address;
   });
 });

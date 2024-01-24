@@ -222,13 +222,18 @@ module.exports = {
     await puppeteer.metamaskWindow().waitForTimeout(3000);
     return true;
   },
-  async signMessage() {
+  async signMessage(isNewUI = false) {
     await puppeteer.metamaskWindow().waitForTimeout(3000);
     const notificationPage = await puppeteer.switchToMetamaskNotification();
-    await puppeteer.waitAndClick(
-      notificationPageElements.signButton,
-      notificationPage,
-    );
+    isNewUI
+      ? await puppeteer.waitAndClick(
+          notificationPageElements.newSignButton,
+          notificationPage
+        )
+      : await puppeteer.waitAndClick(
+          notificationPageElements.signButton,
+          notificationPage
+        );
     await puppeteer.metamaskWindow().waitForTimeout(3000);
     return true;
   },
@@ -256,17 +261,17 @@ module.exports = {
     // );
     // await puppeteer.metamaskWindow().waitForTimeout(3000);
     // return true;
-    debugger
+    debugger;
     await puppeteer.metamaskWindow().waitForTimeout(10000);
     const notificationPage = await puppeteer.switchToMetamaskNotification();
     // await puppeteer.waitAndClick(
     //   notificationPageElements.rejectButton,
     //   notificationPage,
     // );
-    debugger
+    debugger;
     await puppeteer.waitAndClick(
       notificationPageElements.confirmButton,
-      notificationPage,
+      notificationPage
     );
     await puppeteer.metamaskWindow().waitForTimeout(3000);
     return true;
@@ -276,7 +281,7 @@ module.exports = {
     const notificationPage = await puppeteer.switchToMetamaskNotification();
     await puppeteer.waitAndClick(
       confirmPageElements.rejectButton,
-      notificationPage,
+      notificationPage
     );
     await puppeteer.metamaskWindow().waitForTimeout(3000);
     return true;
@@ -285,7 +290,7 @@ module.exports = {
     await puppeteer.waitAndClick(mainPageElements.options.button);
     await puppeteer.waitAndClick(mainPageElements.options.accountDetailsButton);
     walletAddress = await puppeteer.waitAndGetValue(
-      mainPageElements.accountModal.walletAddressInput,
+      mainPageElements.accountModal.walletAddressInput
     );
     await puppeteer.waitAndClick(mainPageElements.accountModal.closeButton);
     return walletAddress;
@@ -297,7 +302,7 @@ module.exports = {
     await puppeteer.init();
     await puppeteer.assignWindows();
     await puppeteer.metamaskWindow().waitForTimeout(1000);
-    await puppeteer.metamaskWindow().bringToFront()
+    await puppeteer.metamaskWindow().bringToFront();
     if (
       (await puppeteer.metamaskWindow().$(unlockPageElements.unlockPage)) ===
       null

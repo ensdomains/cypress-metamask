@@ -126,6 +126,10 @@ module.exports = (on, config) => {
       const confirmed = await metamask.signMessage();
       return confirmed;
     },
+    async signMetamaskTypedData() {
+      const confirmed = await metamask.signMessage(true);
+      return confirmed;
+    },
     async rejectMetamaskTransaction() {
       const rejected = await metamask.rejectTransaction();
       return rejected;
